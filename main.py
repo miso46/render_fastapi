@@ -44,9 +44,18 @@ def index():
         <body>
             <h1>今日の運勢</h1>
             <p>下のボタンを押して、今日の運勢を占いましょう！</p>
-            <form action="/omikuji" method="get">
-                <input type="submit" value="運勢を占う">
-            </form>
+            // jsonを受け取って運勢を表示
+            <button onclick="fetch('/omikuji').then(response => response.json()).then(data => alert('今日の運勢は: ' + data.result))">
+                今日の運勢を占う
+            </button>
+
+
+            <h2>プレゼントを渡す</h2>
+            <p>下のフォームにプレゼントを入力して、ごはんをプレゼントしてください。</p>
+            <form onsubmit="event.preventDefault(); const present = document.getElementById('present').value; fetch('/present', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({present})}).then(response => response.json()).then(data => alert(data.response));">
+                <input type="text" id="present" name="present" placeholder="プレゼントを入力してください" required>
+                <button type="submit">プレゼントを渡す</button>
+            
         </body>
     </html>
     """
@@ -54,4 +63,4 @@ def index():
 
 @app.post("/present")
 async def give_present(present):
-    return {"response": f"サーバです。メリークリスマス！ {present}ありがとう。お返しはキャンディーです。"}  # f文字列というPythonの機能を使っている
+    return {"response": f"サーバです。{present}ありがとう。お返しはキャンディーです。"}  # f文字列というPythonの機能を使っている
