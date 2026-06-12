@@ -6,6 +6,8 @@ from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
+visitor_count = 0
+
 class PresentRequest(BaseModel):
     present: str
 
@@ -27,7 +29,10 @@ def omikuji():
 
 @app.get("/index")
 def index():
-    html_content = """
+    global visitor_count
+    visitor_count += 1
+
+    html_content = f"""
     <html>
         <head>
             <title>Omikuji HP</title>
@@ -53,6 +58,8 @@ def index():
             </style>
         </head>
         <body>
+            <h1>ようこそ！</h1>
+            <p>訪問回数: <span id="counter">{visitor_count}</span></p>
             <h1>今日の運勢</h1>
             <p>下のボタンを押して、今日の運勢を占いましょう！</p>
             <button onclick="fetch('/omikuji').then(response => response.json()).then(data => alert('今日の運勢は: ' + data.result))">
@@ -71,4 +78,4 @@ def index():
 
 @app.post("/present")
 async def give_present(data: PresentRequest):
-    return {"response": f"サーバは{data.present}をもらいました！"}
+    return {"response": f"サーバは{data.present}をもらいました！<br>ありがとう！"}
