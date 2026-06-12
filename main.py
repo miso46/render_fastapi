@@ -44,7 +44,6 @@ def index():
         <body>
             <h1>今日の運勢</h1>
             <p>下のボタンを押して、今日の運勢を占いましょう！</p>
-            // jsonを受け取って運勢を表示
             <button onclick="fetch('/omikuji').then(response => response.json()).then(data => alert('今日の運勢は: ' + data.result))">
                 今日の運勢を占う
             </button>
@@ -63,4 +62,4 @@ def index():
 
 @app.post("/present")
 async def give_present(present):
-    return {"response": f"サーバです。{present}ありがとう。お返しはキャンディーです。"}  # f文字列というPythonの機能を使っている
+    return {"response": f"ごはんは{present['present']}をもらいました！"}
