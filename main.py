@@ -53,24 +53,35 @@ def index():
                         font-size: 16px;
                         width: 300px;
                     }}
+                        .omikuji, .present {{
+                            margin-top: 30px;
+                            padding: 20px;
+                            border: 1px solid #ccc;
+                            border-radius: 10px;
+                            display: inline-block;
+                        }}
                 </style>
             </head>
             <body>
                 <h1>ようこそ！</h1>
                 <p>あなたは <strong>{visitor_count}</strong> 人目のお客様です！</p>
 
-                <h1>今日の運勢</h1>
-                <p>下のボタンを押して、今日の運勢を占いましょう！</p>
-                <button onclick="fetch('/omikuji').then(response => response.json()).then(data => alert('今日の運勢は: ' + data.result))">
-                    今日の運勢を占う
-                </button>
+                <div class="omikuji">
+                    <h1>今日の運勢</h1>
+                    <p>下のボタンを押して、今日の運勢を占いましょう！</p>
+                    <button onclick="fetch('/omikuji').then(response => response.json()).then(data => alert('今日の運勢は: ' + data.result))">
+                        今日の運勢を占う
+                    </button>
+                </div>
     
+                <div class="present">
                 <h2>プレゼントを渡す</h2>
                 <p>下のフォームにプレゼントを入力して、ごはんをプレゼントしてください。</p>
                 <form onsubmit="event.preventDefault(); const present = document.getElementById('present').value; fetch('/present', {{method: 'POST', headers: {{'Content-Type': 'application/json'}}, body: JSON.stringify({{present}})}}).then(response => response.json()).then(data => alert(data.response));">
                     <input type="text" id="present" name="present" placeholder="プレゼントを入力してください" required>
                     <button type="submit">プレゼントを渡す</button>
                 </form>
+                </div>
             </body>
         </html>
         """
