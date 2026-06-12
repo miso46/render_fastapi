@@ -40,6 +40,7 @@ def index():
     <html>
         <head>
             <title>Omikuji HP</title>
+            <link rel="stylesheet" type="text/css" href="/main.css">
         </head>
         <body>
             <h1>今日の運勢</h1>
