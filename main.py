@@ -39,10 +39,14 @@ def index():
     html_content = """
     <html>
         <head>
-            <title>Some HTML in here</title>
+            <title>Omikuji HP</title>
         </head>
         <body>
-            <h1>Look ma! HTML!</h1>
+            <h1>今日の運勢</h1>
+            <p>下のボタンを押して、今日の運勢を占いましょう！</p>
+            <form action="/omikuji" method="get">
+                <input type="submit" value="運勢を占う">
+            </form>
         </body>
     </html>
     """
