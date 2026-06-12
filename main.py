@@ -56,9 +56,10 @@ def index():
                 </style>
             </head>
             <body>
-                <h1>今日の運勢</h1>
+                <h1>ようこそ！</h1>
                 <p>あなたは <strong>{visitor_count}</strong> 人目のお客様です！</p>
-                
+
+                <h1>今日の運勢</h1>
                 <p>下のボタンを押して、今日の運勢を占いましょう！</p>
                 <button onclick="fetch('/omikuji').then(response => response.json()).then(data => alert('今日の運勢は: ' + data.result))">
                     今日の運勢を占う
