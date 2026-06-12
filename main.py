@@ -56,8 +56,6 @@ def index():
                         .omikuji, .present {{
                             margin-top: 30px;
                             padding: 20px;
-                            border: 1px solid #ccc;
-                            border-radius: 10px;
                             display: inline-block;
                         }}
                 </style>
