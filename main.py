@@ -5,7 +5,6 @@ import random
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
-
 visitor_count = 0
 
 class PresentRequest(BaseModel):
@@ -39,7 +38,7 @@ def index():
             </head>
             <body>
                 <h1>今日の運勢</h1>
-                <p>あなたは <strong>{visit_count}</strong> 人目のお客様です！</p>
+                <p>あなたは <strong>{visitor_count}</strong> 人目のお客様です！</p>
                 
                 <p>下のボタンを押して、今日の運勢を占いましょう！</p>
                 <button onclick="fetch('/omikuji').then(response => response.json()).then(data => alert('今日の運勢は: ' + data.result))">
@@ -48,14 +47,14 @@ def index():
     
                 <h2>プレゼントを渡す</h2>
                 <p>下のフォームにプレゼントを入力して、ごはんをプレゼントしてください。</p>
-                <form onsubmit="event.preventDefault(); const present = document.getElementById('present').value; fetch('/present', {method: 'POST', headers: {{'Content-Type': 'application/json'}}, body: JSON.stringify({{present}})}).then(response => response.json()).then(data => alert(data.response));">
+                <form onsubmit="event.preventDefault(); const present = document.getElementById('present').value; fetch('/present', {{method: 'POST', headers: {{'Content-Type': 'application/json'}}, body: JSON.stringify({{present}})}}).then(response => response.json()).then(data => alert(data.response));">
                     <input type="text" id="present" name="present" placeholder="プレゼントを入力してください" required>
                     <button type="submit">プレゼントを渡す</button>
                 </form>
             </body>
         </html>
         """
-        return HTMLResponse(content=html_content, status_code=200)
+    return HTMLResponse(content=html_content, status_code=200)  # ← インデント修正
 
 @app.post("/present")
 async def give_present(data: PresentRequest):
