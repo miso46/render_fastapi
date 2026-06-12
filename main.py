@@ -58,4 +58,4 @@ def index():
 
 @app.post("/present")
 async def give_present(data: PresentRequest):
-    return {"response": f"サーバは{data.present}をもらいました！<br>ありがとう！"}
+    return {"response": f"サーバは{data.present}をもらいました！ありがとう！"}
