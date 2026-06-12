@@ -34,7 +34,26 @@ def index():
         <html>
             <head>
                 <title>Omikuji HP</title>
-                <link rel="stylesheet" type="text/css" href="/static/main.css">
+                <style>
+                    body {{
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                        margin-top: 50px;
+                    }}
+                    button {{
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }}
+                    form {{
+                        margin-top: 20px;
+                    }}
+                    input[type="text"] {{
+                        padding: 10px;
+                        font-size: 16px;
+                        width: 300px;
+                    }}
+                </style>
             </head>
             <body>
                 <h1>今日の運勢</h1>
